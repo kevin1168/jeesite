@@ -27,10 +27,11 @@ import com.thinkgem.jeesite.common.utils.CookieUtils;
 import com.thinkgem.jeesite.common.utils.IdGen;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.entity.MyUser;
 import com.thinkgem.jeesite.modules.sys.security.FormAuthenticationFilter;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
-import com.thinkgem.jeesite.service.UserService;
+import com.thinkgem.jeesite.service.MyUserService;
 
 /**
  * 登录Controller
@@ -44,7 +45,7 @@ public class LoginController extends BaseController{
 	private SessionDAO sessionDAO;
 	
 	@Autowired
-	private UserService userService;
+	private MyUserService userService;
 	
 	/**
 	 * 管理登录
@@ -52,6 +53,12 @@ public class LoginController extends BaseController{
 	@RequestMapping(value = "${adminPath}/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
 		userService.sayHello("duwkkkkkkkkkkkkkkkkk");
+		
+		MyUser user = new MyUser(null, "我我我");
+		MyUser user2 = userService.getByLoginName(user);
+		System.out.println(user2.getPhone());
+		
+		userService.sayHello("duw11111111111111111");
 		
 		Principal principal = UserUtils.getPrincipal();
 
